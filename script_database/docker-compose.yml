@@ -1,0 +1,39 @@
+################################################
+### desde la consola de comandos ejecutar
+################################################
+
+################################################
+### inicial el contenedor ###
+################################################
+# docker compose up mysql
+
+################################################
+### inicial el contenedor sin los logs de consola ###
+################################################
+# docker compose up mysql -d
+
+################################################
+###detener el contenedor###
+################################################
+# docker compose down
+
+################################################
+################################################
+#canbir a gusto las credenciales de los usueario
+################################################
+
+version: '3.8'
+services:
+  mysql:
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+        - "./mysql-data/db:/var/lib/mysql"
+        restart: always        
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpw
+            MYSQL_DATABASE: pizzeria
+            MYSQL_USER: pizza
+            MYSQL_PASSWORD: 123456
